@@ -2,6 +2,8 @@
 
 #include <imgui.h>
 #include <glad/glad.h>
+#include <glm/vec4.hpp>
+
 #include "Eram/Core/Layer.h"
 
 namespace Eram {
@@ -9,14 +11,12 @@ namespace Eram {
 	class DebugWindow : public Layer
 	{
 	public:
+		DebugWindow();
 		virtual void OnImGuiRender() override;
 
-		inline GLfloat GetBackroundRed() const { return m_BackroundRed; }
-		inline GLfloat GetBackroundGreen() const { return m_BackroundGreen; }
-		inline GLfloat GetBackroundBlue() const { return m_BackroundBlue; }
-		inline GLfloat GetBackroundAlpha() const { return m_BackroundAlpha; }
+		inline glm::vec4 GetBackroundColor() const { return m_BackroundColor; }
 	private:
-		GLfloat m_BackroundRed = 0, m_BackroundGreen = 0, m_BackroundBlue = 0, m_BackroundAlpha = 0;
+		glm::vec4 m_BackroundColor;
 	};
 
 }

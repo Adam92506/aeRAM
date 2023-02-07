@@ -7,29 +7,7 @@
 #include <glad/glad.h>
 
 namespace Eram {
-
 	Application* Application::s_Instance = nullptr;
-
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-			case ShaderDataType::Float:  return GL_FLOAT;
-			case ShaderDataType::Float2: return GL_FLOAT;
-			case ShaderDataType::Float3: return GL_FLOAT;
-			case ShaderDataType::Float4: return GL_FLOAT;
-			case ShaderDataType::Mat3:   return GL_FLOAT;
-			case ShaderDataType::Mat4:   return GL_FLOAT;
-			case ShaderDataType::Int:    return GL_INT;
-			case ShaderDataType::Int2:   return GL_INT;
-			case ShaderDataType::Int3:   return GL_INT;
-			case ShaderDataType::Int4:   return GL_INT;
-			case ShaderDataType::Bool:   return GL_BOOL;
-		}
-
-		ER_ASSERT(false, "Unknown ShaderDataType");
-		return GL_NONE;
-	}
 
 	Application::Application()
 	{
@@ -46,8 +24,7 @@ namespace Eram {
 		m_DebugWindow = new DebugWindow;
 		PushOverlay(m_DebugWindow);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray.reset(VertexArray::Create());
 
 		float verticies[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -66,22 +43,12 @@ namespace Eram {
 			m_VertexBuffer->SetLayout(layout);
 		}
 
-		uint32_t index = 0;
-		const auto& layout = m_VertexBuffer->GetLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
-				element.GetComponentCount(),
-				ShaderDataTypeToOpenGLBaseType(element.Type), 
-				element.Normalized ? GL_TRUE : GL_FALSE,
-				layout.GetStride(),
-				(const void*)element.Offset);
-			index++;
-		}
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);
 
 		unsigned int indicies[3] = { 0, 1, 2 };
 		m_IndexBuffer.reset(IndexBuffer::Create(indicies, 3));
+
+		m_VertexArray->AddIndexBuffer(m_IndexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core 
@@ -153,11 +120,12 @@ namespace Eram {
 	{
 		while (m_Running)
 		{
-			glClearColor(m_DebugWindow->GetBackroundRed(), m_DebugWindow->GetBackroundGreen(), m_DebugWindow->GetBackroundBlue(), m_DebugWindow->GetBackroundAlpha());
+			glm::vec4 backroundColor = m_DebugWindow->GetBackroundColor();
+			glClearColor(backroundColor.r, backroundColor.g, backroundColor.b, backroundColor.a);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
+			m_VertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
