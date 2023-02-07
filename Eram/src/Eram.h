@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Eram/Application.h"
-#include "Eram/Log.h"
+#include "Eram/Core/Application.h"
+#include "Eram/Core/Log.h"
 
-#include "Eram/Input.h"
-#include "Eram/Keycodes.h"
-#include "Eram/MouseKeyCodes.h"
+#include "Eram/Core/Input.h"
+#include "Eram/Core/Keycodes.h"
+#include "Eram/Core/MouseKeyCodes.h"
 
-#include "Eram/Layer.h"
+#include "Eram/Core/Layer.h"

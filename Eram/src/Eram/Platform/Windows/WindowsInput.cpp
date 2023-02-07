@@ -1,7 +1,7 @@
 #include "erpch.h"
 #include "WindowsInput.h"
 
-#include "Eram/Application.h"
+#include "Eram/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Eram {

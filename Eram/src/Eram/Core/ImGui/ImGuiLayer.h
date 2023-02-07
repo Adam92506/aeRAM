@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Eram/Layer.h"
-#include "Eram/Events/KeyEvent.h"
-#include "Eram/Events/MouseEvent.h"
-#include "Eram/Events/ApplicationEvent.h"
+#include "Eram/Core/Layer.h"
+#include "Eram/Core/Events/KeyEvent.h"
+#include "Eram/Core/Events/MouseEvent.h"
+#include "Eram/Core/Events/ApplicationEvent.h"
 
 namespace Eram {
 

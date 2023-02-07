@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Eram/Input.h"
+#include "Eram/Core/Input.h"
 
 namespace Eram {
 

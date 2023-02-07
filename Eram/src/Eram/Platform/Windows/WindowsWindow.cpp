@@ -1,13 +1,13 @@
 #include "erpch.h"
 #include "WindowsWindow.h"
 
-#include "Eram/Events/ApplicationEvent.h"
-#include "Eram/Events/MouseEvent.h"
-#include "Eram/Events/KeyEvent.h"
+#include "Eram/Core/Events/ApplicationEvent.h"
+#include "Eram/Core/Events/MouseEvent.h"
+#include "Eram/Core/Events/KeyEvent.h"
 
-#include "Eram/Log.h"
+#include "Eram/Core/Log.h"
 
-#include "Platform/OpenGL/OpenGLContext.h"
+#include "Eram/Platform/OpenGL/OpenGLContext.h"
 
 namespace Eram {
 

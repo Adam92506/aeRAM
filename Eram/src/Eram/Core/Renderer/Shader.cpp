@@ -2,7 +2,7 @@
 #include "Shader.h"
 
 #ifdef ER_PLATFORM_WINDOWS
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "Eram/Platform/OpenGL/OpenGLShader.h"
 #endif
 
 namespace Eram {

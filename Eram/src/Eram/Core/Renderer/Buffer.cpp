@@ -2,7 +2,7 @@
 #include "Buffer.h"
 
 #ifdef ER_PLATFORM_WINDOWS
-#include "Platform/OpenGL/OpenGLBuffer.h"
+#include "Eram/Platform/OpenGL/OpenGLBuffer.h"
 #endif
 
 namespace Eram {

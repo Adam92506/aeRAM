@@ -1,11 +1,11 @@
 #include "erpch.h"
-#include "Platform/OpenGL/OpenGLContext.h"
+#include "OpenGLContext.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "Eram/Core.h"
-#include "Eram/Log.h"
+#include "Eram/Core/Core.h"
+#include "Eram/Core/Log.h"
 
 namespace Eram {
 

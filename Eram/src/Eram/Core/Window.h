@@ -2,8 +2,8 @@
 
 #include "erpch.h"
 
-#include "Eram/Core.h"
-#include "Eram/Events/Event.h"
+#include "Eram/Core/Core.h"
+#include "Eram/Core/Events/Event.h"
 
 namespace Eram {
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Eram/Window.h"
-#include "Eram/Renderer/RenderingContext.h"
+#include "Eram/Core/Window.h"
+#include "Eram/Core/Renderer/RenderingContext.h"
 
 #include <GLFW/glfw3.h>
 

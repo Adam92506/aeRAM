@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Eram/Renderer/Shader.h"
+#include "Eram/Core/Renderer/Shader.h"
 
 namespace Eram {
 

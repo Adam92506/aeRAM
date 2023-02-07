@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef ER_PLATFORM_WINDOWS
-	#error eaRAM currently only supports Windows!
-#endif
-
 #ifdef ER_ENABLE_ASSERTS
 	#define ER_ASSERT(x, ...) { if(!x) { ER_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }}
 #else

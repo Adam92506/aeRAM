@@ -1,7 +1,7 @@
 #pragma once
 
 #include "erpch.h"
-#include "Eram/Core.h"
+#include "Eram/Core/Core.h"
 
 namespace Eram {
 

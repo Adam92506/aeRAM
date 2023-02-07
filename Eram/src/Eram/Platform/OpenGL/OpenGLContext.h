@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Eram/Renderer/RenderingContext.h"
+#include "Eram/Core/Renderer/RenderingContext.h"
 
 struct GLFWwindow;
 

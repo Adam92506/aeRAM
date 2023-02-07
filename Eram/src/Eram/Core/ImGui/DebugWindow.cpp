@@ -1,5 +1,4 @@
 #include "erpch.h"
-
 #include "DebugWindow.h"
 
 namespace Eram {

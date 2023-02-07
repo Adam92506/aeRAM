@@ -2,16 +2,16 @@
 
 #include "Core.h"
 
-#include "Window.h"
-#include "Eram/LayerStack.h"
-#include "Eram/Events/Event.h"
-#include "Eram/Events/ApplicationEvent.h"
+#include "Eram/Core/Window.h"
+#include "Eram/Core/LayerStack.h"
+#include "Eram/Core/Events/Event.h"
+#include "Eram/Core/Events/ApplicationEvent.h"
 
-#include "Eram/ImGui/ImGuiLayer.h"
-#include "Eram/ImGui/DebugWindow.h"
+#include "Eram/Core/ImGui/ImGuiLayer.h"
+#include "Eram/Core/ImGui/DebugWindow.h"
 
-#include "Eram/Renderer/Shader.h"
-#include "Eram/Renderer/Buffer.h"
+#include "Eram/Core/Renderer/Shader.h"
+#include "Eram/Core/Renderer/Buffer.h"
 
 namespace Eram {
 

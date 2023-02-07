@@ -1,8 +1,8 @@
 #include "erpch.h"
 #include "OpenGLShader.h"
 
-#include "Eram/Log.h"
-#include "Eram/Core.h"
+#include "Eram/Core/Log.h"
+#include "Eram/Core/Core.h"
 
 #include <glad/glad.h>
 
