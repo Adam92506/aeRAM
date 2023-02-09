@@ -8,7 +8,7 @@ namespace Eram {
 	void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
-		s_Logger = spdlog::stdout_color_mt("Minecraft");
+		s_Logger = spdlog::stdout_color_mt("aeRAM");
 
 		#ifdef MC_LOG_LEVEL_TRACE
 		s_Logger->set_level(spdlog::level::trace);
