@@ -9,6 +9,7 @@
 
 #include "Eram/Core/ImGui/ImGuiLayer.h"
 #include "Eram/Core/ImGui/DebugWindow.h"
+#include "Eram/Scope/Scope.h"
 
 #include "Eram/Core/Renderer/Shader.h"
 #include "Eram/Core/Renderer/Buffer.h"
@@ -38,16 +39,9 @@ namespace Eram {
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		DebugWindow* m_DebugWindow;
+		Scope* m_Scope;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-		std::shared_ptr<Shader> m_SquareShader;
 	private:
 		static Application* s_Instance;
 	};
