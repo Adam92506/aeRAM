@@ -6,13 +6,15 @@
 #include "Eram/Core/Renderer/Shader.h"
 #include "Eram/Core/Renderer/Buffer.h"
 #include "Eram/Core/Renderer/VertexArray.h"
+#include "Eram/Core/Renderer/Camera.h"
 
 namespace Eram {
 
 	class Scope : public Layer
 	{
 	public:
-		virtual ~Scope();
+		Scope();
+		virtual ~Scope() {};
 
 		virtual void OnAttach() override;
 		virtual void OnUpdate() override;
@@ -22,8 +24,7 @@ namespace Eram {
 		std::shared_ptr<VertexArray> m_TriangleVertexArray;
 		std::shared_ptr<Shader> m_TriangleShader;
 
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-		std::shared_ptr<Shader> m_SquareShader;
+		Camera m_Camera;
 	};
 
 }

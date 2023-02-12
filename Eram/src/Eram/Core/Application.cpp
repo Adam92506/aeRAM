@@ -3,6 +3,7 @@
 
 #include "Eram/Core/Log.h"
 #include "Eram/Core/Input.h"
+#include "Eram/Core/Keycodes.h"
 
 #include <glad/glad.h>
 
@@ -21,7 +22,7 @@ namespace Eram {
 		PushOverlay(m_ImGuiLayer);
 
 		m_DebugWindow = new DebugWindow;
-		PushOverlay(m_DebugWindow);
+		//PushOverlay(m_DebugWindow);
 
 		m_Scope = new Scope();
 		PushLayer(m_Scope);
@@ -61,10 +62,6 @@ namespace Eram {
 	{
 		while (m_Running)
 		{
-			glm::vec4 backroundColor = m_DebugWindow->GetBackroundColor();
-			glClearColor(backroundColor.r, backroundColor.g, backroundColor.b, backroundColor.a);
-			glClear(GL_COLOR_BUFFER_BIT);
-
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();

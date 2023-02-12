@@ -106,7 +106,7 @@ namespace Eram {
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() = default;
+		virtual ~VertexBuffer() {};
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -120,7 +120,7 @@ namespace Eram {
 	class IndexBuffer
 	{
 	public:
-		virtual ~IndexBuffer() = default;
+		virtual ~IndexBuffer() {};
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
