@@ -32,6 +32,7 @@ namespace Eram {
 			glDeleteShader(vertexShader);
 
 			ER_ERROR("{0}", infoLog.data());
+			ER_ERROR("{0}", vertexSrc.c_str());
 			ER_ASSERT(false, "Vertex shader compilation failure");
 			return;
 		}
@@ -55,6 +56,7 @@ namespace Eram {
 			glDeleteShader(fragmentShader);
 
 			ER_ERROR("{0}", infoLog.data());
+			ER_ERROR("{0}", fragmentSrc.c_str());
 			ER_ASSERT(false, "Fragment shader compilation failure");
 			return;
 		}

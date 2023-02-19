@@ -1,6 +1,8 @@
 #include "erpch.h"
 #include "Eram.h"
 
+#include "Eram/Core/Utill.h"
+
 #ifdef ER_PLATFORM_WINDOWS
 
 int main()

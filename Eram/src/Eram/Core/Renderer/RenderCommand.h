@@ -21,6 +21,16 @@ namespace Eram {
 		{
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
+
+		static void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount)
+		{
+			s_RendererAPI->DrawLines(vertexArray, vertexCount);
+		}
+
+		static void SetLineWidth(float width)
+		{
+			s_RendererAPI->SetLineWidth(width);
+		}
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

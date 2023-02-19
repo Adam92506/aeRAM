@@ -11,6 +11,9 @@ namespace Eram {
 		virtual void Clear() override;
 
 		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) override;
+		virtual void DrawLines(const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount) override;
+
+		virtual void SetLineWidth(float width) override;
 	};
 
 }

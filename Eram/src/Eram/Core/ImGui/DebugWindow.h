@@ -2,9 +2,11 @@
 
 #include <imgui.h>
 #include <glad/glad.h>
-#include <glm/vec4.hpp>
+#include <glm/glm.hpp>
 
 #include "Eram/Core/Layer.h"
+
+#include "Eram/Scope/VideoMap.h"
 
 namespace Eram {
 
@@ -14,9 +16,13 @@ namespace Eram {
 		DebugWindow();
 		virtual void OnImGuiRender() override;
 
-		inline glm::vec4 GetBackroundColor() const { return m_BackroundColor; }
+		const glm::vec2 GetCameraPosition() const { return m_CameraPosition; }
+
+		void SetVideoMaps(std::vector<std::shared_ptr<VideoMap>>* videoMaps) { m_VideoMaps = videoMaps; }
 	private:
-		glm::vec4 m_BackroundColor;
+		glm::vec2 m_CameraPosition;
+
+		std::vector<std::shared_ptr<VideoMap>>* m_VideoMaps;
 	};
 
 }

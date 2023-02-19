@@ -15,12 +15,28 @@ namespace Eram {
 
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
+	void Renderer::Submit(int primitive, const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, uint32_t vertexCount)
 	{
-		shader->Bind();
-		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
-		vertexArray->Bind();
-		RenderCommand::DrawIndexed(vertexArray);
+		switch (primitive)
+		{
+			case ER_NONE: return;
+			case ER_TRIANGLE:
+			{
+				shader->Bind();
+				shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+				vertexArray->Bind();
+				RenderCommand::DrawIndexed(vertexArray);
+			}
+			case ER_LINES:
+			{
+				shader->Bind();
+				shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+				vertexArray->Bind();
+				RenderCommand::DrawLines(vertexArray, vertexCount);
+			}
+			case ER_LINE_STRIP: return;
+			case ER_LINE_LOOP: return;
+		}
 	}
 
 }

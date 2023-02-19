@@ -7,7 +7,7 @@
 
 namespace Eram {
 
-	VertexBuffer* VertexBuffer::Create(float* verticies, uint32_t size)
+	VertexBuffer* VertexBuffer::Create(const void* verticies, uint32_t size)
 	{
 		#ifdef ER_PLATFORM_WINDOWS
 			return new OpenGLVertexBuffer(verticies, size);

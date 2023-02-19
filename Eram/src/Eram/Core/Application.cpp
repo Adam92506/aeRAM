@@ -22,10 +22,12 @@ namespace Eram {
 		PushOverlay(m_ImGuiLayer);
 
 		m_DebugWindow = new DebugWindow;
-		//PushOverlay(m_DebugWindow);
+		PushOverlay(m_DebugWindow);
 
 		m_Scope = new Scope();
 		PushLayer(m_Scope);
+
+		m_DebugWindow->SetVideoMaps(m_Scope->GetVideoMaps());
 	}
 
 	Application::~Application()
@@ -62,6 +64,8 @@ namespace Eram {
 	{
 		while (m_Running)
 		{
+			m_Scope->SetCameraPosition(m_DebugWindow->GetCameraPosition());
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();

@@ -8,6 +8,8 @@
 #include "Eram/Core/Renderer/VertexArray.h"
 #include "Eram/Core/Renderer/Camera.h"
 
+#include "Eram/Scope/VideoMap.h"
+
 namespace Eram {
 
 	class Scope : public Layer
@@ -20,9 +22,12 @@ namespace Eram {
 		virtual void OnUpdate() override;
 		virtual void OnEvent(Event& event) override;
 
+		std::vector<std::shared_ptr<VideoMap>>* GetVideoMaps() { return &m_VideoMaps; }
+
+		void SetCameraPosition(glm::vec2 position) { m_Camera.SetPostion( {position, 0}); }
+
 	private:
-		std::shared_ptr<VertexArray> m_TriangleVertexArray;
-		std::shared_ptr<Shader> m_TriangleShader;
+		std::vector<std::shared_ptr<VideoMap>> m_VideoMaps;
 
 		Camera m_Camera;
 	};
