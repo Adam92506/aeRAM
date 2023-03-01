@@ -5,7 +5,9 @@
 #include "Eram/Core/Input.h"
 #include "Eram/Core/Keycodes.h"
 
-#include <glad/glad.h>
+#include "Eram/Core/Renderer/Renderer.h"
+
+#include <GLFW/glfw3.h>
 
 namespace Eram {
 	Application* Application::s_Instance = nullptr;
@@ -21,13 +23,8 @@ namespace Eram {
 		m_ImGuiLayer = new ImGuiLayer;
 		PushOverlay(m_ImGuiLayer);
 
-		m_DebugWindow = new DebugWindow;
-		PushOverlay(m_DebugWindow);
-
-		m_Scope = new Scope();
+		m_Scope = new Scope(m_Window->GetWidth(), m_Window->GetHeight());
 		PushLayer(m_Scope);
-
-		m_DebugWindow->SetVideoMaps(m_Scope->GetVideoMaps());
 	}
 
 	Application::~Application()
@@ -38,7 +35,8 @@ namespace Eram {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(ER_BIND_EVENT_FN(Application::OnWindowClosed));
+		dispatcher.Dispatch<WindowCloseEvent>(ER_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(ER_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 		{
@@ -64,11 +62,16 @@ namespace Eram {
 	{
 		while (m_Running)
 		{
-			m_Scope->SetCameraPosition(m_DebugWindow->GetCameraPosition());
+			float time = (float)glfwGetTime();
+			Timestep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
+			if (!m_Minimized)
 			{
-				layer->OnUpdate();
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(timestep);
+				}
 			}
 
 			m_ImGuiLayer->Begin();
@@ -82,10 +85,24 @@ namespace Eram {
 		}
 	}
 
-	bool Application::OnWindowClosed(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent& e)
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+		return false;
 	}
 
 }

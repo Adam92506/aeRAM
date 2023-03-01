@@ -3,9 +3,6 @@
 
 #include "Eram/Core/Renderer/Renderer.h"
 
-#include "Eram/Core/Log.h"
-#include "Eram/Core/Utill.h"
-
 namespace Eram {
 
 	VideoMap::VideoMap(std::string name)

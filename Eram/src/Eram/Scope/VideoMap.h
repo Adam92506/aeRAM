@@ -43,7 +43,7 @@ namespace Eram {
 
 			void main()
 			{
-				color = vec4(0.29f, 0.29f, 0.29f, 1.0f);
+				color = vec4(0.2f, 0.2f, 0.2f, 1.0f);
 			}
 		)";
 	private:

@@ -8,12 +8,7 @@
 #include "Eram/Core/Events/ApplicationEvent.h"
 
 #include "Eram/Core/ImGui/ImGuiLayer.h"
-#include "Eram/Core/ImGui/DebugWindow.h"
 #include "Eram/Scope/Scope.h"
-
-#include "Eram/Core/Renderer/Shader.h"
-#include "Eram/Core/Renderer/Buffer.h"
-#include "Eram/Core/Renderer/VertexArray.h"
 
 namespace Eram {
 
@@ -34,14 +29,16 @@ namespace Eram {
 
 		inline static Application& Get() { return *s_Instance; }
 	private:
-		bool OnWindowClosed(WindowCloseEvent& e);
-
+		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
-		DebugWindow* m_DebugWindow;
 		Scope* m_Scope;
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};

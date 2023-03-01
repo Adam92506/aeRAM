@@ -1,50 +1,31 @@
 #include "erpch.h"
 #include "Scope.h"
 
-#include "Eram/Core/Renderer/Renderer.h"
-
-#include "Eram/ResourceManager/Sct2Parser.h"
-
 namespace Eram {
 
-	Scope::Scope()
-		: m_Camera(-3.4f, 3.4f, -2.0f, 2.0f)
+	Scope::Scope(float displayWidth, float displayHeight)
 	{
+		m_Display.reset(new Display(displayWidth, displayHeight));
 	}
 
 	void Scope::OnAttach()
 	{
-		Sct2Parser::LoadMapsFromFile(m_VideoMaps, "Test.sct2");
-
-		for (int i = 0; i < m_VideoMaps.size(); i++)
-		{
-			m_VideoMaps[i]->Init();
-		}
+		m_Display->Init();
 	}
 
-	void Scope::OnUpdate()
+	void Scope::OnUpdate(Timestep ts)
 	{
-		RenderCommand::SetClearColor({ 0.01f, 0.04f, 0.12f, 1.0f });
-		RenderCommand::Clear();
-
-		Renderer::BeginScene(m_Camera);
-
-		m_Camera.SetRotation(13.3);
-
-		for (int i = 0; i < m_VideoMaps.size(); i++)
-		{
-			if (m_VideoMaps[i]->IsEnabled())
-			{
-				m_VideoMaps[i]->DrawVideoMap();
-			}
-		}
-
-		Renderer::EndScene();
+		m_Display->OnUpdate();
 	}
 
 	void Scope::OnEvent(Event& event)
 	{
+		if (event.GetEventType() == EventType::WindowResize)
+		{
+			auto& resizeEvent = (WindowResizeEvent&)event;
 
+			m_Display->OnResize(resizeEvent.GetWidth(), resizeEvent.GetHeight());
+		}
 	}
 
 }

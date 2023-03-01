@@ -174,6 +174,13 @@ namespace Eram {
 		m_Data.VSync = enabled;
 	}
 
+	void WindowsWindow::SetTitle(std::string& title)
+	{
+		glfwSetWindowTitle(m_Window, title.c_str());
+
+		m_Data.Title = title;
+	}
+
 	bool WindowsWindow::IsVSync() const
 	{
 		return m_Data.VSync;

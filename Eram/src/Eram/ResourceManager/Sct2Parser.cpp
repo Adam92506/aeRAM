@@ -100,7 +100,7 @@ namespace Eram {
 		{
 			if (lat[0].size() >= 2 && IsFloat(lat[0]))
 			{
-				latitude += std::stof(lat[0].substr(1));
+				latitude += std::stof(lat[0]);
 			}
 			else
 			{
@@ -127,7 +127,7 @@ namespace Eram {
 		}
 		else
 		{
-			longitude += std::stof(lon[0].substr(1));
+			longitude += std::stof(lon[0]);
 			if (lon.size() > 2 && IsFloat(lat[1]))
 			{
 				longitude += std::stof(lon[1]) / 60;

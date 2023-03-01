@@ -1,7 +1,7 @@
 #include "erpch.h"
-#include "Eram.h"
 
-#include "Eram/Core/Utill.h"
+#include "Eram/Core/Log.h"
+#include "Eram/Core/Application.h"
 
 #ifdef ER_PLATFORM_WINDOWS
 
